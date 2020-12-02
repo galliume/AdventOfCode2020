@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-int main()
+int day1()
 {
 	ifstream data1, data2, data3;
 	string line1, line2, line3;
