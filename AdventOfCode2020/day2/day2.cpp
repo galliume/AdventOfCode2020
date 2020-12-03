@@ -36,8 +36,3 @@ int day2()
 
 	return 0;
 }
-
-int main()
-{	
-	return day2();
-}
