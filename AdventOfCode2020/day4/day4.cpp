@@ -1,7 +1,6 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <map>
 #include <vector>
 #include <sstream>
 
@@ -60,7 +59,7 @@ bool isValid(vector<std::string>& tokens)
 		if ("hcl" == field)
 		{
 			char color[7];
-			int count = sscanf_s(fieldData.c_str(), "\#%6[a-f0-9]", &color, sizeof(color));
+			int count = sscanf_s(fieldData.c_str(), "#%6[a-f0-9]", &color, sizeof(color));
 			if (0 == count) return false;
 		}
 		if ("ecl" == field)
@@ -76,6 +75,20 @@ bool isValid(vector<std::string>& tokens)
 	return true;
 }
 
+void compute(string& tmp, vector<string>& tokens, int& totalValid, int& totalValid2)
+{
+	explode(tmp, tokens, ' ');
+
+	if ((8 == tokens.size()) || (7 == tokens.size() && tmp.find("cid") == string::npos))
+	{
+		totalValid++;
+		if (isValid(tokens)) totalValid2++;
+	}
+
+	tokens.clear();
+	tmp = "";
+}
+
 void day4()
 {
 	ifstream data;
@@ -88,24 +101,11 @@ void day4()
 	if (data.is_open())
 	{
 		while (getline(data, line))
-		{
-			if (0 != line.size())
+		{			
+			if (line.size()) tmp+= line + " ";
+			if (0 == line.size() || data.eof())
 			{
-				tmp += line + " ";
-			}
-			else
-			{
-				explode(tmp, tokens, ' ');
-
-				if ((8 == tokens.size()) || (7 == tokens.size() && tmp.find("cid") == string::npos))
-				{
-					totalValid++;
-
-					if (isValid(tokens)) totalValid2++;
-				}
-				
-				tokens.clear();
-				tmp = "";
+				compute(tmp, tokens, totalValid, totalValid2);
 			}
 		}
 	}
