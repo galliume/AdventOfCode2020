@@ -83,7 +83,7 @@ void day4()
 	data.open("day4/input.txt");
 	vector<string>tokens;
 	string tmp;
-	int totalValid = 0;
+	int totalValid = 0, totalValid2 = 0;
 
 	if (data.is_open())
 	{
@@ -97,10 +97,13 @@ void day4()
 			{
 				explode(tmp, tokens, ' ');
 
-				if ((8 == tokens.size() && isValid(tokens)) || (7 == tokens.size() && isValid(tokens) && tmp.find("cid") == string::npos))
+				if ((8 == tokens.size()) || (7 == tokens.size() && tmp.find("cid") == string::npos))
 				{
 					totalValid++;
+
+					if (isValid(tokens)) totalValid2++;
 				}
+				
 				tokens.clear();
 				tmp = "";
 			}
@@ -108,7 +111,8 @@ void day4()
 	}
 	data.close();
 
-	cout << "Total valid passports : " << totalValid << endl;
+	cout << "4.1 Total valid passports : " << totalValid << endl;
+	cout << "4.2 Total valid passports : " << totalValid2 << endl;
 }
 
 int main()
