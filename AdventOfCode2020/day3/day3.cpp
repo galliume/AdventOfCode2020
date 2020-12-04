@@ -44,17 +44,11 @@ void day3()
 	data.close();
 
 	totalTrees = countTrees(3, 1, treesMap);
-	cout << "day 3.2 Total trees : " << totalTrees << endl;
+	cout << "day 3.1 Total trees : " << totalTrees << endl;
 
 	totalTrees *= countTrees(1, 1, treesMap);
 	totalTrees *= countTrees(5, 1, treesMap);
 	totalTrees *= countTrees(7, 1, treesMap);
 	totalTrees *= countTrees(1, 2, treesMap);
 	cout << "day 3.2 Total trees : " << totalTrees << endl;
-}
-
-int main()
-{
-	day3();
-	return 0;
 }
