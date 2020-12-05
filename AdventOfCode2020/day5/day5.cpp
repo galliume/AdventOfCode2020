@@ -12,35 +12,24 @@ void day5()
 	ifstream data;
 	string line;
 	data.open("day5/input.txt");
-
-	int maxSeatIndex = 0;
 	vector<int>listIndex;
 
 	if (data.is_open())
 	{
 		while (getline(data, line))
 		{			
-			int seatIndex = 0;
-
 			for (int i = 0; i < line.size(); i++)
 			{
 				line.at(i) = (line.at(i) == 'B' || line.at(i) == 'R') ? '1' : '0';
 			}
-			seatIndex = std::stoi(line, nullptr, 2);
-
-			if (seatIndex > maxSeatIndex)
-			{
-				maxSeatIndex = seatIndex;
-			}
-			listIndex.push_back(seatIndex);
+			listIndex.push_back(std::stoi(line, nullptr, 2));
 		}
 	}
 	data.close();
-	
-	cout << "5.1 Max Seat ID : " << maxSeatIndex << endl;
 
-	sort(listIndex.begin(), listIndex.end());
-	
+	sort(listIndex.begin(), listIndex.end());	
+	cout << "5.1 Max Seat ID : " << listIndex.at(listIndex.size()-1) << endl;
+
 	for (auto& index : listIndex)
 	{
 		if (find(listIndex.begin(), listIndex.end(), index + 1) == listIndex.end() && find(listIndex.begin(), listIndex.end(), index + 2) != listIndex.end())
