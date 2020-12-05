@@ -102,7 +102,7 @@ void day4()
 	{
 		while (getline(data, line))
 		{			
-			if (line.size()) tmp+= line + " ";
+			if (line.size()) tmp += line + " ";
 			if (0 == line.size() || data.eof())
 			{
 				compute(tmp, tokens, totalValid, totalValid2);
@@ -113,10 +113,4 @@ void day4()
 
 	cout << "4.1 Total valid passports : " << totalValid << endl;
 	cout << "4.2 Total valid passports : " << totalValid2 << endl;
-}
-
-int main()
-{
-	day4();
-	return 0;
 }
