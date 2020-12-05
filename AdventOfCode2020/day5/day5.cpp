@@ -7,24 +7,6 @@
 
 using namespace std;
 
-int getIndex(string rows, int max)
-{
-	int index = 0;
-
-	for (auto& pos : rows)
-	{
-		if ('L' == pos || 'F' == pos)
-		{
-			max = (max - index) / 2 + index;
-		}
-		else
-		{
-			index = (max - index) / 2 + index;
-		}
-	}
-	return ('L' == rows[rows.size()] || 'F' == rows[rows.size()]) ? index : max;
-}
-
 void day5()
 {
 	ifstream data;
@@ -38,13 +20,13 @@ void day5()
 	{
 		while (getline(data, line))
 		{			
-			char rows[8], cols[4];
-			int rowIndex = 0, colIndex = 0, seatIndex = 0;
-			sscanf_s(line.c_str(), "%7s%3s", &rows, sizeof(rows), &cols, sizeof(cols));
+			int seatIndex = 0;
 
-			rowIndex = getIndex(rows, 127);
-			colIndex = getIndex(cols, 7);
-			seatIndex = rowIndex * 8 + colIndex;
+			for (int i = 0; i < line.size(); i++)
+			{
+				line.at(i) = (line.at(i) == 'B' || line.at(i) == 'R') ? '1' : '0';
+			}
+			seatIndex = std::stoi(line, nullptr, 2);
 
 			if (seatIndex > maxSeatIndex)
 			{
