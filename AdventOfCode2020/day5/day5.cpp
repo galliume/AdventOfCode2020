@@ -39,9 +39,3 @@ void day5()
 		}
 	}
 }
-
-int main()
-{
-	day5();
-	return 0;
-}
