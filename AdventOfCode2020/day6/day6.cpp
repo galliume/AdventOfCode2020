@@ -47,9 +47,3 @@ void day6()
 	cout << "6.1 Total yes : " << totalYes << endl;
 	cout << "6.2 Total yes : " << totalYes2 << endl;
 }
-
-int main()
-{
-	day6();
-	return 0;
-}
