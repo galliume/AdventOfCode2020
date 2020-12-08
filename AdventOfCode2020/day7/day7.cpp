@@ -33,7 +33,7 @@ map<string, int> findContain(string line)
 		for (unsigned i = 1; i < iter->size(); ++i)
 		{
 			string bags = (*iter)[i];
-			sscanf_s(bags.c_str(), "%d %39[a-zA-Z ]s", &count, &bag, sizeof(bag));;
+			sscanf_s(bags.c_str(), "%d %39[a-zA-Z ]s", &count, &bag, sizeof(bag));
 			contain[bag] = count;
 		}
 		++iter;
@@ -86,7 +86,6 @@ void day7()
 {
 	ifstream data;
 	string line;
-	string shinyBag = "shiny gold";
 	map<string, map<string, int>>contain;
 	data.open("day7/input.txt");
 
@@ -101,15 +100,9 @@ void day7()
 	}
 	data.close();
 
-	int total = count(contain, shinyBag);
-	int total2 = countBag(contain, shinyBag, 1);
+	int total = count(contain, "shiny gold");
+	int total2 = countBag(contain, "shiny gold", 1);
 
 	cout << "7.1 Total : " << total << endl;
 	cout << "7.2 Total : " << total2 - 1 << endl;
-}
-
-int main()
-{
-	day7();
-	return 0;
 }
