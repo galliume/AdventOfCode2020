@@ -67,9 +67,3 @@ void day8()
 
 	cout << "8.2 Total : " << boot(instructions, instructions, 0) << endl;
 }
-
-int main()
-{
-	day8();
-	return 0;
-}
