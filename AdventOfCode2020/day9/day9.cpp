@@ -15,12 +15,13 @@ void day9()
 	while (inputFile >> number) numbers.emplace_back(number);
 
 	vector<int>numbersToCalculate = vector<int>(numbers.begin() + preambleSize, numbers.end());
+	vector<int>numbersSum;
 
 	while(found)
 	{
 		found = false;
 		num = numbersToCalculate.at(index);
-		vector<int>numbersSum = vector<int>(numbers.begin() + index , numbers.begin() + index + preambleSize);
+		numbersSum = vector<int>(numbers.begin() + index , numbers.begin() + index + preambleSize);
 
 		for (int sum1 : numbersSum)
 		{
@@ -40,8 +41,7 @@ void day9()
 	while (!found)
 	{
 		num = sum = numbers.at(index);
-
-		vector<int>numbersSum = vector<int>(numbers.begin(), numbers.end());
+		numbersSum = vector<int>(numbers.begin(), numbers.end());
 		part2.emplace_back(num);
 
 		for_each(numbersSum.begin() + index, numbersSum.end(), [&](int n) {
@@ -59,10 +59,4 @@ void day9()
 
 	cout << "9.1 : Num with no sum " << part1 << endl;
 	cout << "9.2 Weakness : " << part2.at(0) + part2.at(part2.size() - 1) << endl;
-}
-
-int main()
-{
-	day9();
-	return 0;
 }
