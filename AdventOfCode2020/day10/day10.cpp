@@ -92,9 +92,3 @@ void day10()
 	}	
 	cout << "10.2 : " << nbPermutations * tribonacci(counsecutivesOne) << endl;
 }
-
-int main()
-{
-	day10();
-	return 0;
-}
