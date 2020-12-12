@@ -4,13 +4,21 @@
 #include <string>
 #include <tuple>
 #include <chrono>
+#include <map>
+
 using namespace std;
 
 void part1(vector<tuple<char, int>> instructions)
 {
 	auto start = chrono::high_resolution_clock::now();
+	
+	map<int, char>dirs;
+	dirs.emplace(0, 'E');
+	dirs.emplace(1, 'S');
+	dirs.emplace(2, 'W');
+	dirs.emplace(3, 'N');
 
-	char curDir = 'E', nextDir;
+	int curDir = 0, nextDir;
 	int distance = 0, manhattanDistance = 0, x = 0, y = 0;
 
 	for (auto instruction : instructions)
@@ -20,7 +28,7 @@ void part1(vector<tuple<char, int>> instructions)
 
 		if ('R' != nextDir && 'L' != nextDir)
 		{
-			nextDir = ('F' == nextDir) ? curDir : nextDir;
+			nextDir = ('F' == nextDir) ? dirs[curDir] : nextDir;
 
 			if ('N' == nextDir)
 			{
@@ -41,132 +49,7 @@ void part1(vector<tuple<char, int>> instructions)
 		}
 		else
 		{
-			if ('L' == nextDir)
-			{
-				if ('N' == curDir)
-				{
-					if (90 == distance)
-					{
-						curDir = 'W';
-					}
-					else if (180 == distance)
-					{
-						curDir = 'S';
-					}
-					else if (270 == distance)
-					{
-						curDir = 'E';
-					}
-				}
-				else if ('S' == curDir)
-				{
-					if (90 == distance)
-					{
-						curDir = 'E';
-					}
-					else if (180 == distance)
-					{
-						curDir = 'N';
-					}
-					else if (270 == distance)
-					{
-						curDir = 'W';
-					}
-				}
-				else if ('E' == curDir)
-				{
-					if (90 == distance)
-					{
-						curDir = 'N';
-					}
-					else if (180 == distance)
-					{
-						curDir = 'W';
-					}
-					else if (270 == distance)
-					{
-						curDir = 'S';
-					}
-				}
-				else if ('W' == curDir)
-				{
-					if (90 == distance)
-					{
-						curDir = 'S';
-					}
-					else if (180 == distance)
-					{
-						curDir = 'E';
-					}
-					else if (270 == distance)
-					{
-						curDir = 'N';
-					}
-				}
-			}
-			else if ('R' == nextDir)
-			{
-				if ('N' == curDir)
-				{
-					if (90 == distance)
-					{
-						curDir = 'E';
-					}
-					else if (180 == distance)
-					{
-						curDir = 'S';
-					}
-					else if (270 == distance)
-					{
-						curDir = 'W';
-					}
-				}
-				else if ('S' == curDir)
-				{
-					if (90 == distance)
-					{
-						curDir = 'W';
-					}
-					else if (180 == distance)
-					{
-						curDir = 'N';
-					}
-					else if (270 == distance)
-					{
-						curDir = 'E';
-					}
-				}
-				else if ('E' == curDir)
-				{
-					if (90 == distance)
-					{
-						curDir = 'S';
-					}
-					else if (180 == distance)
-					{
-						curDir = 'W';
-					}
-					else if (270 == distance)
-					{
-						curDir = 'N';
-					}
-				}
-				else if ('W' == curDir)
-				{
-					if (90 == distance)
-					{
-						curDir = 'N';
-					}
-					else if (180 == distance)
-					{
-						curDir = 'E';
-					}
-					else if (270 == distance)
-					{
-						curDir = 'S';
-					}
-				}
-			}
+			curDir = ('L' == nextDir) ? (4 + curDir - distance / 90) % 4 : (4 + curDir + distance / 90) % 4;
 		}
 	}
 
