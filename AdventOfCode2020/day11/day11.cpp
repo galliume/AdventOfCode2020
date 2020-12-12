@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <chrono>
+#include <string>
 
 using namespace std;
 
@@ -300,7 +301,7 @@ void checkSeats(map<int, string>& originalSeats)
 void checkSeats2(map<int, string>& originalSeats)
 {
 	map<int, string>seats = originalSeats;
-	
+
 	for (auto& line : seats)
 	{
 		int position = line.first;
@@ -377,7 +378,7 @@ void checkSeats2(map<int, string>& originalSeats)
 				c = x - 1;
 				for (l = position + 1; l <= originalSeats.size(); l++)
 				{
-					if (c == -1  || l == originalSeats.size() || originalSeats[l][c] == 'L')
+					if (c == -1 || l == originalSeats.size() || originalSeats[l][c] == 'L')
 					{
 						status++;
 						break;
@@ -437,7 +438,7 @@ void checkSeats2(map<int, string>& originalSeats)
 			if ('#' == seat)
 			{
 				int l = 0;
-	
+
 				for (l = x + 1; l < line.second.size(); l++)
 				{
 					if (originalSeats[line.first][l] == 'L')
@@ -600,7 +601,7 @@ void day11()
 		}
 	}
 
-	auto finish = chrono::high_resolution_clock::now();	
+	auto finish = chrono::high_resolution_clock::now();
 	cout << "Part 1 : " << count << " " << chrono::duration_cast<chrono::milliseconds>(finish - start).count() << "milliseconds" << endl;
 
 	count = 0, lastCount = 1;
@@ -634,10 +635,4 @@ void day11()
 	finish = chrono::high_resolution_clock::now();
 	cout << "Part 2 : " << count << " " << chrono::duration_cast<chrono::milliseconds>(finish - start).count() << "milliseconds" << endl;
 
-}
-
-int main()
-{
-	day11();
-	return 0;
 }
