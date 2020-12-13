@@ -133,9 +133,3 @@ void day12()
 	part1(instructions);
 	part2(instructions);
 }
-
-int main()
-{
-	day12();
-	return 0;
-}
