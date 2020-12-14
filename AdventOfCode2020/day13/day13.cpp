@@ -72,9 +72,3 @@ void day13()
 
 	cout << "Part 2 : " << time << endl;
 }
-
-int main()
-{
-	day13();
-	return 0;
-}
